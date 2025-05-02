@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: Exo2-VariableFont;
 }
+button {
+  cursor: pointer;
+}
 @font-face {
   font-family: Exo2-VariableFont;
   src: url("/fonts/Exo2-VariableFont.ttf");
@@ -11,6 +14,7 @@
 :root {
   --primary-color: #3c0d60; /* Deep eggplant purple */
   --secondary-color: #642f6c; /* Rich, muted violet */
+  --primary-color-light: #fff;
   --text-light: #ffffff; /* Keeping text bright for contrast */
 
   /* Fonts */
