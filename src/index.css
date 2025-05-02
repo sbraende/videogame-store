@@ -16,6 +16,7 @@ button {
   --secondary-color: #642f6c; /* Rich, muted violet */
   --primary-color-light: #fff;
   --text-light: #ffffff; /* Keeping text bright for contrast */
+  --text-error: crimson;
 
   /* Fonts */
   --base-font-size: 1rem;

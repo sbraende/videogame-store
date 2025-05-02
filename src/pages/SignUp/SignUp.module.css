@@ -47,7 +47,7 @@
   background-color: var(--secondary-color);
 }
 .errorMessage {
-  display: none;
+  color: var(--text-error);
 }
 
 .imagePreviewContainer {

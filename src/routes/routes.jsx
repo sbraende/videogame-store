@@ -17,6 +17,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Profile from "../pages/Profile/Profile";
 import Contact from "../pages/Contact/Contact";
 import NotFound from "../pages/NotFound/NotFound";
+import VerifyEmail from "../pages/VerifyEmail/VerifyEmail";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ export const router = createBrowserRouter(
       <Route path="/order-confirmation" element={<OrderConfirmation />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<NotFound />} />
