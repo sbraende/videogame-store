@@ -2,4 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Exo2-VariableFont;
+}
+@font-face {
+  font-family: Exo2-VariableFont;
+  src: url("/fonts/Exo2-VariableFont.ttf");
+}
+:root {
+  --primary-color: #3c0d60; /* Deep eggplant purple */
+  --secondary-color: #642f6c; /* Rich, muted violet */
+  --text-light: #ffffff; /* Keeping text bright for contrast */
+
+  /* Fonts */
+  --base-font-size: 1rem;
+  --medium-font-size: 1.5rem;
+  --large-font-size: 2rem;
+  --x-large-font-size: 3rem;
+  --xx-large-font-size: 4rem;
+
+  /* Spacing */
+  --space-small: 0.5rem;
+  --space-medium: 1rem;
+  --space-large: 2rem;
+  --space-x-large: 4rem;
+
+  /* Border Radius */
+  --border-radius-small: 0.25rem;
+  --border-radius-medium: 0.5rem;
+  --border-radius-large: 1rem;
 }

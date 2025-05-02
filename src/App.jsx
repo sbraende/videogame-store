@@ -4,7 +4,6 @@ import styles from "./App.module.css";
 function App() {
   return (
     <>
-      <nav>Navbar</nav>
       <Outlet />
     </>
   );
