@@ -3,18 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getAuthContext } from "../../context/authContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 
 const Navbar = () => {
-  const { user } = getAuthContext(); // Get user authentication state
-
+  // Get user authentication state
+  const { user } = getAuthContext();
+  // For redirecting user
+  const navigate = useNavigate();
   // sign users out
   const handleSignOut = () => {
     try {
       signOut(auth);
+      navigate("/games");
     } catch (error) {
       console.log(error.message);
     }
