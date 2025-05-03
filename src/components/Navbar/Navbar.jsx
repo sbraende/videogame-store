@@ -3,17 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
 import { NavLink } from "react-router-dom";
 import { getAuthContext } from "../../context/authContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebaseConfig";
 
 const Navbar = () => {
   const { user } = getAuthContext(); // Get user authentication state
 
-  console.log(user);
-
-  const handleMenuToggle = () => {
-    setIsHamburgerMenuOpen((prev) => !prev);
+  // sign users out
+  const handleSignOut = () => {
+    try {
+      signOut(auth);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -25,7 +29,9 @@ const Navbar = () => {
 
         <div className={styles.cartHamburgerMenu}>
           {user ? (
-            <button className={styles.signOutButton}>Sign Out</button>
+            <button className={styles.signOutButton} onClick={handleSignOut}>
+              Sign Out
+            </button>
           ) : (
             <NavLink to="/sign-in" className={styles.signInLink}>
               Sign In
@@ -49,7 +55,7 @@ const Navbar = () => {
           <button className={styles.cartButton}>
             <FontAwesomeIcon icon={faCartPlus} className={styles.cartIcon} />
           </button>
-          <button className={styles.hamburgerButton} onClick={handleMenuToggle}>
+          <button className={styles.hamburgerButton}>
             <FontAwesomeIcon
               icon={faBars}
               className={styles.hamburgerMenuIcon}
