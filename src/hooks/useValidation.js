@@ -21,7 +21,6 @@ const useValidation = () => {
     if (!values.password.trim()) {
       newErrors.password = "Password is required";
     }
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.*\s)/;
 
     if (!values.password.trim()) {
       newErrors.password = "Password is required";
