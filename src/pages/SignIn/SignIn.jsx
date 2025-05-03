@@ -3,7 +3,7 @@ import styles from "./SignIn.module.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import useSignInValidation from "../../hooks/useSignInValidation";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   // Declaring state variables
@@ -73,6 +73,9 @@ const SignIn = () => {
           />
           {errors && <p className={styles.errorMessage}>{errors.password}</p>}
         </fieldset>
+        <p>
+          Don't have an account? Create on <Link to="/sign-up">here</Link>
+        </p>
         {firebaseError && (
           <p className={styles.errorMessage}>{firebaseError}</p>
         )}

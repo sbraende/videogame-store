@@ -3,11 +3,12 @@ import styles from "./SignUp.module.css";
 import useValidation from "../../hooks/useValidation";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { auth, database } from "../../../firebaseConfig";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 const SignUp = () => {
   // Declaring state variables
   const [signUpFormData, setSignUpFormData] = useState({
-    id: null,
     firstname: "",
     lastname: "",
     email: "",
@@ -60,8 +61,8 @@ const SignUp = () => {
     }
   };
   // Sign up user
-  const handleSignUp = () => {
-    return signUp(signUpFormData.email, signUpFormData.password);
+  const handleSignUp = async () => {
+    return await signUp(signUpFormData.email, signUpFormData.password);
   };
   // Handling the submit
   const handleSubmit = async (e) => {
@@ -71,9 +72,27 @@ const SignUp = () => {
       return;
     }
     try {
-      await handleSignUp();
+      const userCredential = await handleSignUp();
+      const user = userCredential?.user; // ✅ Avoid accessing state directly
+
+      if (!user) {
+        console.error("User creation failed, no user object found!");
+        return;
+      }
       console.log("User created successfully", user);
       navigate("/verify-email"); // Redirect user
+      // Second part-----------------------------------
+      await setDoc(doc(database, "users", user.uid), {
+        uid: user.uid,
+        firstname: signUpFormData.firstname,
+        lastname: signUpFormData.lastname,
+        email: user.email,
+        dateOfBirth: signUpFormData.dateOfBirth || "", // Default to null if not provided
+        profilePicture: signUpFormData.profilePicture || null, // Default to empty string if no image
+        createdAt: serverTimestamp(),
+      });
+      console.log("User successfully added to Firestore:", user);
+      // ----------------------------------------------
       setSignUpFormData({
         id: null,
         firstname: "",

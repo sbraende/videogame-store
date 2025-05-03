@@ -16,11 +16,11 @@ const useAuth = () => {
         email,
         password
       );
-      const user = userCredential.user;
-      sendEmailVerification(user);
-      setUser(user);
+
+      sendEmailVerification(userCredential.user);
+      setUser(userCredential.user);
       setSignUpError(null);
-      return userCredential.user; // Ensure we return this
+      return userCredential; // Ensure we return this
     } catch (err) {
       setSignUpError(err.message);
       throw err;
