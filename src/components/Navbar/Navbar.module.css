@@ -29,6 +29,19 @@
 .cartIcon,
 .hamburgerMenuIcon {
   font-size: var(--medium-font-size);
+  color: var(--primary-color-light);
+}
+.signInLink,
+.signOutButton {
+  border: 1px solid var(--primary-color-light);
+  background-color: var(--primary-color-light);
+  text-decoration: none;
+  padding: var(--space-small);
+  border-radius: var(--border-radius-small);
+}
+.signInLink:hover,
+.signOutButton:hover {
+  opacity: 0.8;
 }
 .secondRow {
   display: flex;
@@ -39,6 +52,13 @@
   font-size: var(--medium-font-size);
   text-decoration: none;
   color: var(--text-light);
+}
+.hamburgerButton {
+  display: none;
+}
+.activeLink {
+  border-bottom: 2px solid var(--primary-color-light);
+  transition: all 0.2s;
 }
 /* ------------------------- */
 @media screen and (max-width: 680px) {
