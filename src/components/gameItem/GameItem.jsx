@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import styles from "./GameItem.module.css";
 import { Link } from "react-router-dom"; // Assuming you're using React Router
 
@@ -30,7 +31,7 @@ const GameItem = ({ game }) => {
       </Link>
 
       {/* Add to cart button */}
-      <button className={styles.addToCartBtn}>Add to Cart</button>
+      <Button className={styles.addToCartBtn}>Add to cart</Button>
     </div>
   );
 };

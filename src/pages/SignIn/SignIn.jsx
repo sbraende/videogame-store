@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebaseConfig";
 import useSignInValidation from "../../hooks/useSignInValidation";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
 
 const SignIn = () => {
   // Declaring state variables
@@ -33,6 +34,13 @@ const SignIn = () => {
         signInFormData.email,
         signInFormData.password
       );
+      const user = userCredentials.user;
+
+      // Check if the user's email is verified
+      if (!user.emailVerified) {
+        setFirebaseError("Please verify your email before signing in.");
+        return;
+      }
       console.log("Successfully signed in", userCredentials.user);
       navigate("/games");
       setSignInFormData({
@@ -79,7 +87,7 @@ const SignIn = () => {
         {firebaseError && (
           <p className={styles.errorMessage}>{firebaseError}</p>
         )}
-        <button className={styles.signInButton}>Sign in</button>
+        <Button className={styles.signInButton}>Sign in</Button>
       </form>
     </div>
   );

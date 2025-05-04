@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import styles from "./GameDetails.module.css";
 import { database } from "../../../firebaseConfig";
+import Button from "../../components/Button/Button";
 
 const GameDetails = () => {
   const { id } = useParams(); // Extract the game ID from URL
@@ -59,7 +60,7 @@ const GameDetails = () => {
             <strong>Overview :</strong>
             {game?.overview}
           </p>
-          <button className={styles.addToCartBtn}>Add to Cart</button>
+          <Button className={styles.addToCartBtn}>Add to cart</Button>
         </div>
         <div className={styles.gameImageContainer}>
           <img

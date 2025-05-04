@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { auth, database } from "../../../firebaseConfig";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import Button from "../../components/Button/Button";
 
 const SignUp = () => {
   // Declaring state variables
@@ -217,7 +218,7 @@ const SignUp = () => {
             <p className={styles.errorMessage}>{errors.confirmPassword}</p>
           )}
         </fieldset>
-        <button className={styles.createAccountButton}>Create Account</button>
+        <Button className={styles.createAccountButton}>Create account</Button>
       </form>
     </div>
   );

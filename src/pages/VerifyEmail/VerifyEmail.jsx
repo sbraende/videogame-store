@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./VerifyEmail.module.css";
 import { auth } from "../../../firebaseConfig";
 import { sendEmailVerification } from "firebase/auth";
+import Button from "../../components/Button/Button";
 
 const VerifyEmail = () => {
   const [emailVerified, setEmailVerified] = useState(false);
@@ -46,12 +47,12 @@ const VerifyEmail = () => {
             you will be automatically redirected to the main page.
           </h2>
           <p>If you haven't received an email, click below to resend.</p>
-          <button
-            onClick={handleResendVerification}
+          <Button
             className={styles.resendButton}
+            onClick={handleResendVerification}
           >
             Resend Verification Email
-          </button>
+          </Button>
 
           {emailSent && (
             <p className={styles.successMessage}>
