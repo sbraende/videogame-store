@@ -25,7 +25,7 @@ const GameItem = ({ game }) => {
       </p>
 
       {/* Link to specific game page */}
-      <Link to={`/game/:${game.id}`} className={styles.gameLink}>
+      <Link to={`/games/${game.id}`} className={styles.gameLink}>
         View Details
       </Link>
 
