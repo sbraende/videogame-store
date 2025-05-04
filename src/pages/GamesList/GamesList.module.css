@@ -1,0 +1,33 @@
+.gamesWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sortFilterContainer {
+  width: 100%;
+  height: auto;
+  padding: var(--space-medium) var(--space-x-large);
+  background-color: var(--secondary-color);
+  display: flex;
+}
+.sortContainer,
+.filterContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sortContainer select,
+.filterContainer select {
+  min-width: 120px;
+  height: 32px;
+  padding: 0 var(--space-small);
+  border-radius: var(--border-radius-small);
+}
+.gamesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  padding: var(--space-large) var(--space-x-large);
+  background-color: var(--secondary-color-light);
+}
