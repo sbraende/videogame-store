@@ -1,7 +1,7 @@
 import styles from "./SignUp.module.css";
 
 const SignUp = () => {
-  return <div></div>;
+  return <div>Sign up</div>;
 };
 
 export default SignUp;
