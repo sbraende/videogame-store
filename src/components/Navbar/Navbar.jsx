@@ -4,11 +4,28 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { getAuthContex } from "../../context/authContex.jsx";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Button from "../Button/Button.jsx";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../FirebaseConfig.js";
 
 const Navbar = () => {
+  // States
   const { user } = getAuthContex();
+
+  // Hooks
+  const navigate = useNavigate();
+
+  // Sign out user
+  const handleSignout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+      console.log("User has successfully signed out");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -23,7 +40,9 @@ const Navbar = () => {
         {/* --- */}
         <div className={styles.cartHamburgerMenu}>
           {user ? (
-            <Button className={styles.signOutButton}>Sign Out</Button>
+            <Button className={styles.signOutButton} onClick={handleSignout}>
+              Sign Out
+            </Button>
           ) : (
             <Link className={styles.signInLink} to="/sign-in">
               Sign In
