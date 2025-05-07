@@ -11,23 +11,20 @@ const VerifyEmail = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(
-    () => () => {
-      const checkVerificationStatus = async () => {
-        await auth.currentUser.reload();
-        setEmailVerfied(auth.currentUser.emailVerified);
+  useEffect(() => {
+    const checkVerificationStatus = async () => {
+      await auth.currentUser.reload();
+      setEmailVerfied(auth.currentUser.emailVerified);
 
-        if (auth.currentUser.emailVerified) {
-          navigate("/games");
-        }
-      };
+      if (auth.currentUser.emailVerified) {
+        navigate("/games");
+      }
+    };
 
-      const interval = setInterval(checkVerificationStatus, 500);
+    const interval = setInterval(checkVerificationStatus, 5000);
 
-      return () => clearInterval(interval);
-    },
-    []
-  );
+    return () => clearInterval(interval);
+  }, []);
 
   const handleResendVerification = async () => {
     setError(null);

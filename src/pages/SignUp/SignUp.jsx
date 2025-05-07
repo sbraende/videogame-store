@@ -4,6 +4,8 @@ import { useRef, useState } from "react";
 import useSignUpValidation from "../../hooks/useSignUpValidation.js";
 import useAuth from "../../hooks/useAuth.js";
 import { useNavigate } from "react-router-dom";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { database } from "../../../FirebaseConfig.js";
 
 const SignUp = () => {
   // Declare states and refs
@@ -71,12 +73,43 @@ const SignUp = () => {
       console.log("Form submit failed");
       return;
     }
-    const userCredentials = await signUp(
-      signUpFormData.email,
-      signUpFormData.password
-    );
-    navigate("/verify-email");
-    console.log("Account was created successfully", userCredentials.user);
+
+    try {
+      const userCredentials = await signUp(
+        signUpFormData.email,
+        signUpFormData.password
+      );
+      const user = userCredentials.user;
+      console.log("Account was created successfully", userCredentials.user);
+
+      await setDoc(doc(database, "users", user.uid), {
+        uid: user.uid,
+        firstname: signUpFormData.firstname,
+        lastname: signUpFormData.lastname,
+        email: user.email,
+        dateOfBirth: signUpFormData.dateOfBirth || "",
+        profilePicture: null,
+        createdAt: serverTimestamp(),
+      });
+
+      navigate("/verify-email");
+
+      console.log("User added to the Firestore database");
+
+      setSignUpFormData({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        dateOfBirth: "",
+        profilePicture: "",
+        previewUrl: "",
+      });
+      fileInputRef.current.value = "";
+    } catch (error) {
+      console.log("Could not create user"), error.message;
+    }
   };
 
   return (
