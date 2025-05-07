@@ -2,9 +2,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../../FirebaseConfig";
 
-export const authContext = createContext();
+const authContext = createContext();
 
-const authProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -15,9 +15,11 @@ const authProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  return <authContext.Provider value={user}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider value={{ user }}>{children}</authContext.Provider>
+  );
 };
 
 export const getAuthContex = () => useContext(authContext);
 
-export default authProvider;
+export default AuthProvider;
